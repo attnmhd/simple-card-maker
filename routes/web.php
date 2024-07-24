@@ -16,13 +16,29 @@ use Inertia\Inertia;
 |
 */
 
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('Card/Dashboard');
+});
+
+Route::get('/1', function () {
+    return Inertia::render('Card/Card');
+});
+
+Route::get('/role', function () {
+    return Inertia::render('Card/Form/RoleForm');
+});
+
+Route::get('/card', function () {
+    return Inertia::render('Card/Form/CardForm');
 });
 
 Route::get('/dashboard', function () {
