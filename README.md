@@ -1,12 +1,8 @@
-
 # Card Maker
 
 Simple card maker
 
 Case study sample
-
-
-
 
 ## Installation
 
@@ -21,8 +17,21 @@ Install packages
 ```bash
   composer install
   npm install
-``` 
+```
+
+Rename env.example -> env & generate APP_KEY
+
+```bash
+  php artisan key:generate
+```
+
+Run project
+
+```bash
+  php artisan serve
+  npm run dev
+```
+
 ## Authors
 
-- [@attmhd](https://github.com/attnmhd/)
-
+-   [@attmhd](https://github.com/attnmhd/)
