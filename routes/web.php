@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\CardController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +27,7 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function () {
-    return Inertia::render('Card/Dashboard');
-});
+Route::get('/', [CardController::class,'index']);
 
 Route::get('/1', function () {
     return Inertia::render('Card/Card');
