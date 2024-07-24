@@ -6,9 +6,7 @@ import { BsEye } from "react-icons/bs";
 import { IoPrintOutline } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
 
-export default function CardDashboard({ role, cards }) {
-    console.log(role);
-    console.log(cards);
+export default function CardDashboard() {
     return (
         <div className="container mx-auto my-auto">
             <Head title="Card Maker" />
@@ -16,7 +14,7 @@ export default function CardDashboard({ role, cards }) {
             <h2 className="text-bold text-6xl text-center mt-8">
                 Simple Card Maker App
             </h2>
-            {/* Role */}
+            {/* Pekerjaan */}
             <div className=" p-4 mx-auto flex justify-center my-20">
                 <Link className="flex" href="/role">
                     <button
@@ -45,38 +43,31 @@ export default function CardDashboard({ role, cards }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {role.map((item, i) => (
-                                <tr
-                                    key={i}
-                                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                 >
-                                    <th
-                                        scope="row"
-                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                    >
-                                        {i + 1}
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        {item.role_name}
-                                    </td>
-                                    <td className="px-6 py-4 flex justify-between">
-                                        <Link>
-                                            <HiOutlinePencilSquare
-                                                role="button"
-                                                className="hover:text-black"
-                                                size={18}
-                                            />
-                                        </Link>
-                                        <Link>
-                                            <CiTrash
-                                                role="button"
-                                                className="hover:text-black"
-                                                size={18}
-                                            />
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
+                                    1
+                                </th>
+                                <td className="px-6 py-4">Mahasiswa</td>
+                                <td className="px-6 py-4 flex justify-between">
+                                    <Link>
+                                        <HiOutlinePencilSquare
+                                            role="button"
+                                            className="hover:text-black"
+                                            size={18}
+                                        />
+                                    </Link>
+                                    <Link>
+                                        <CiTrash
+                                            role="button"
+                                            className="hover:text-black"
+                                            size={18}
+                                        />
+                                    </Link>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -114,53 +105,46 @@ export default function CardDashboard({ role, cards }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {cards.map((item, i) => (
-                                <tr
-                                    key={i}
-                                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th
+                                    scope="row"
+                                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                                 >
-                                    <th
-                                        scope="row"
-                                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                    >
-                                        {i + 1}
-                                    </th>
-                                    <td className="px-6 py-4">
-                                        {item.created_at}
-                                    </td>
-                                    <td className="px-6 py-4">{item.name}</td>
-                                    <td className="px-6 py-4 flex justify-between gap-3">
-                                        <Link href="/1">
-                                            <BsEye
-                                                name="view"
-                                                size={18}
-                                                className="hover:text-black"
-                                            />
-                                        </Link>
-                                        <Link>
-                                            <HiOutlinePencilSquare
-                                                name="edit"
-                                                size={18}
-                                                className="hover:text-black"
-                                            />
-                                        </Link>
-                                        <Link>
-                                            <CiTrash
-                                                name="delete"
-                                                size={18}
-                                                className="hover:text-black"
-                                            />
-                                        </Link>
-                                        <Link>
-                                            <IoPrintOutline
-                                                name="print"
-                                                size={18}
-                                                className="hover:text-black"
-                                            />
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
+                                    1
+                                </th>
+                                <td className="px-6 py-4">20-02-2022</td>
+                                <td className="px-6 py-4">Muhammad Attan</td>
+                                <td className="px-6 py-4 flex justify-between gap-3">
+                                    <Link href="/1">
+                                        <BsEye
+                                            name="view"
+                                            size={18}
+                                            className="hover:text-black"
+                                        />
+                                    </Link>
+                                    <Link>
+                                        <HiOutlinePencilSquare
+                                            name="edit"
+                                            size={18}
+                                            className="hover:text-black"
+                                        />
+                                    </Link>
+                                    <Link>
+                                        <CiTrash
+                                            name="delete"
+                                            size={18}
+                                            className="hover:text-black"
+                                        />
+                                    </Link>
+                                    <Link>
+                                        <IoPrintOutline
+                                            name="print"
+                                            size={18}
+                                            className="hover:text-black"
+                                        />
+                                    </Link>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
