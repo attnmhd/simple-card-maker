@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\CardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,21 +27,27 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-Route::get('/', function () {
-    return Inertia::render('Card/Dashboard');
+// Role routes
+Route::controller(RoleController::class)->group(function(){
+    Route::get('/role', 'addAndEdit');
+    Route::get('/role/{roles}/edit', 'addAndEdit');
+    Route::patch('/role/{roles}/edit', 'update');
+    Route::post('/role', 'store');
+    Route::delete('/role/{roles}', 'destroy');
 });
 
-Route::get('/1', function () {
-    return Inertia::render('Card/Card');
+// Card routes
+Route::controller(CardController::class)->group(function(){
+    Route::get('/','index')->name('card.index');
+    Route::get('/card', 'addAndEdit');
+    Route::get('/card/{cards}/edit', 'addAndEdit');
+    Route::patch('/card/{cards}/edit', 'update');
+    Route::post('/card', 'store')->name('card.store');
+    Route::delete('/card/{cards}', 'destroy');
 });
 
-Route::get('/role', function () {
-    return Inertia::render('Card/Form/RoleForm');
-});
 
-Route::get('/card', function () {
-    return Inertia::render('Card/Form/CardForm');
-});
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

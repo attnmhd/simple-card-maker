@@ -1,7 +1,42 @@
-import { Head, Link } from "@inertiajs/react";
+import { Head, Link, router, useForm, usePage } from "@inertiajs/react";
 import { IoArrowBackCircle } from "react-icons/io5";
 
-export default function RoleForm() {
+export default function RoleForm({ roles }) {
+    const currentUrl = usePage().url;
+    console.log(currentUrl);
+    const { data, setData } = useForm({
+        role_name: roles.role_name,
+    });
+
+    const handleChange = (e) => {
+        setData({
+            ...data,
+            role_name: e.target.value,
+        });
+    };
+
+    const addRole = (e) => {
+        e.preventDefault();
+
+        router.post("/role", {
+            role_name: data.role_name,
+        });
+
+        setData({
+            role_name: "",
+        });
+    };
+
+    const updateRole = (e) => {
+        e.preventDefault();
+
+        console.log(data);
+        router.post(`/role/${roles.id}/edit`, {
+            _method: "patch",
+            role_name: data.role_name,
+        });
+    };
+
     return (
         <div className="container mx-auto my-20">
             <Head title="Role" />
@@ -10,7 +45,10 @@ export default function RoleForm() {
             </Link>
             <h1 className="text-center font-bold text-4xl mb-8">Add Role</h1>
             <div className=" mx-60 py-10 border border-spacing-10 border-black rounded bg-transparent">
-                <form className="max-w-sm mx-auto">
+                <form
+                    className="max-w-sm mx-auto"
+                    onSubmit={currentUrl == "/role" ? addRole : updateRole}
+                >
                     <div className="mb-5">
                         <label
                             htmlFor="email"
@@ -24,6 +62,8 @@ export default function RoleForm() {
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Mahasiswa"
                             required=""
+                            value={data.role_name}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="flex justify-end">
