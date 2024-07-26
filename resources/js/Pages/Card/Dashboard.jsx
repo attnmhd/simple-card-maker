@@ -122,13 +122,7 @@ export default function CardDashboard() {
                                             className="hover:text-black"
                                         />
                                     </Link>
-                                    <Link>
-                                        <HiOutlinePencilSquare
-                                            name="edit"
-                                            size={18}
-                                            className="hover:text-black"
-                                        />
-                                    </Link>
+
                                     <Link>
                                         <CiTrash
                                             name="delete"
