@@ -20,9 +20,6 @@ const CardForm = ({ roles }) => {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
-            onSuccess: () => {
-                alert("Data berhasil ditambahkan");
-            },
             onError: (errors) => {
                 setErrors(errors);
             },

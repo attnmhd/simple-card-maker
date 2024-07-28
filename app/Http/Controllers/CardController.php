@@ -17,10 +17,22 @@ class CardController extends Controller
             'cards' => $cards
         ]);
     }
-    public function addAndEdit(Card $cards){
+
+    public function cardApi(){
+        $cards = Card::all();
+        return response()->json($cards);
+    }
+
+    public function showCard(int $id){
+        $cards = Card::select('*')->join('roles','roles.id','=','cards.role_id')->where('cards.id','=',$id)->get();
+        return Inertia::render('Card/Card',[
+            'cards' => $cards
+        ]);
+    }
+
+    public function add(){
         $roles = Role::all();
         return Inertia::render('Card/Form/CardForm',[
-            'cards' => $cards,
             'roles' => $roles
         ]);
 
@@ -45,7 +57,7 @@ class CardController extends Controller
         $card = Card::create([
             'nama' => $validatedData['nama'],
             'role_id' => $validatedData['role_id'],
-            'profil_pict' => $imagePath, // Store the image path in the database
+            'profil_pict' => $fileName, // Store the image path in the database
         ]);
 
         return redirect()->route('card.index');
@@ -73,4 +85,6 @@ private function storeImage($image, $fileName)
     public function destroy(Card $cards){
         $cards->delete();
     }
+
+    
 }

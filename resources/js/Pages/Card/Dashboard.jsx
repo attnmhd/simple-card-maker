@@ -3,8 +3,8 @@ import { MdAddCard } from "react-icons/md";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import { CiTrash } from "react-icons/ci";
 import { BsEye } from "react-icons/bs";
-import { IoPrintOutline } from "react-icons/io5";
 import { IoMdPersonAdd } from "react-icons/io";
+import dateFormat from "dateformat";
 
 export default function CardDashboard({ roles, cards }) {
     return (
@@ -134,34 +134,34 @@ export default function CardDashboard({ roles, cards }) {
                                         {i + 1}
                                     </th>
                                     <td className="px-6 py-4">
-                                        {item.created_at}
+                                        {dateFormat(
+                                            item.created_at,
+                                            "dddd, mmmm dS, yyyy"
+                                        )}
                                     </td>
                                     <td className="px-6 py-4">{item.nama}</td>
                                     <td className="px-6 py-4 flex justify-between gap-3">
-                                        <Link href="/1">
+                                        <Link href={`/${item.id}`}>
                                             <BsEye
                                                 name="view"
                                                 size={18}
                                                 className="hover:text-black"
                                             />
                                         </Link>
-                                        <Link href={`/card/${item.id}/edit`}>
-                                            <HiOutlinePencilSquare
-                                                name="edit"
-                                                size={18}
-                                                className="hover:text-black"
-                                            />
-                                        </Link>
-                                        <Link>
+
+                                        <Link
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                router.post(
+                                                    `/card/${item.id}`,
+                                                    {
+                                                        _method: "delete",
+                                                    }
+                                                );
+                                            }}
+                                        >
                                             <CiTrash
                                                 name="delete"
-                                                size={18}
-                                                className="hover:text-black"
-                                            />
-                                        </Link>
-                                        <Link>
-                                            <IoPrintOutline
-                                                name="print"
                                                 size={18}
                                                 className="hover:text-black"
                                             />

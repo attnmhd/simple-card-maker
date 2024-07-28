@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\CardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -36,14 +37,17 @@ Route::controller(RoleController::class)->group(function(){
     Route::delete('/role/{roles}', 'destroy');
 });
 
+Route::get('/testdown', [PdfController::class, 'printCard']);
+
 // Card routes
 Route::controller(CardController::class)->group(function(){
     Route::get('/','index')->name('card.index');
-    Route::get('/card', 'addAndEdit');
-    Route::get('/card/{cards}/edit', 'addAndEdit');
+    Route::get('/card', 'add');
+    Route::get('/{id}','showCard')->name('card.showCard');
     Route::patch('/card/{cards}/edit', 'update');
     Route::post('/card', 'store')->name('card.store');
     Route::delete('/card/{cards}', 'destroy');
+    Route::get('api/card', 'cardApi');
 });
 
 
